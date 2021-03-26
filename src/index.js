@@ -5,8 +5,9 @@ import getContainer from './utils/getContainer'
   const buttons = document.querySelector('section.buttons')
 
   const action = async (event)=>{
+    event.stopPropagation();
     const person = document.querySelectorAll('div.person')
-    if(event.target.nodeName === "BUTTON"){
+    if(event.target.nodeName === "BUTTON" || event.target.nodeName ==="#document"){
         const page = parseInt(event.target.innerText)
         const Characters = await getChararters(page);
         if(person.length > 0){
@@ -19,6 +20,6 @@ import getContainer from './utils/getContainer'
         }
     }
   }
-
+  window.addEventListener('load', action)
   buttons.addEventListener('click', action)
 })();
